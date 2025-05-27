@@ -1,4 +1,4 @@
-## Tic-Tac-Toe (redefined) : 
+## Tic-Tac-Toe (redefined)
 Where your “winning move” could vanish on your next turn!
 <br>
 <br>
