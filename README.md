@@ -1,6 +1,7 @@
-## Tic-Tac-Toe (redefined) : Where your “winning move” could vanish on your next turn!
-
-
+## Tic-Tac-Toe (redefined) : 
+Where your “winning move” could vanish on your next turn!
+<br>
+<br>
 ### Game Rules
 	
 -	Two players: X and O
