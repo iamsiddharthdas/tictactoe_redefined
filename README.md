@@ -1,4 +1,5 @@
-# Tic-Tac-Toe (redefined) - Where Strategy meets Memory
+## Tic-Tac-Toe (redefined) : Where your “winning move” could vanish on your next turn!
+
 
 ### Game Rules
 	
