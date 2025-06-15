@@ -134,22 +134,25 @@ cols[2].metric("Draws", st.session_state.scores["Draw"])
 st.markdown(f"**Current Player:** {st.session_state.player}", unsafe_allow_html=True)
 
 # Game Grid
-grid_html = '<div class="game-grid">'
 for r in range(3):
-    for c in range(3):
+    cols = st.columns(3)
+    for c, col in enumerate(cols):
         cell = st.session_state.board[r][c]
-        # assign CSS class for winning cells
-        extra = ""
-        if st.session_state.winning_line and (r, c) in st.session_state.winning_line:
-            extra = ' class="win-cell"'
-        key = f"btn_{r}_{c}_{cell}"
-        # render each button
-        if st.button(cell or " ", key=key, on_click=make_move, args=(r,c), disabled=bool(cell) or bool(st.session_state.winning_line)):
-            pass
-        # wrapping manually with CSS grid container
-    # newline handled by flex wrapping
-grid_html += "</div>"
-st.markdown(grid_html, unsafe_allow_html=True)
+        is_win = st.session_state.winning_line and (r, c) in st.session_state.winning_line
+        button_label = cell or " "
+        # highlight winning cells by coloring the column container
+        if is_win:
+            col.markdown(f"<div class='win-cell' style='width:100%; height:100%; padding:0.25rem; border-radius:8px;'>", unsafe_allow_html=True)
+        # place the cell button
+        col.button(
+            button_label,
+            key=f"btn_{r}_{c}",
+            on_click=make_move,
+            args=(r, c),
+            disabled=bool(cell) or bool(st.session_state.winning_line)
+        )
+        if is_win:
+            col.markdown("</div>", unsafe_allow_html=True)
 
 # Display win/draw messages
 if st.session_state.winning_line:
@@ -158,4 +161,4 @@ elif check_draw() and not st.session_state.winning_line:
     st.info("It's a draw!")
 
 # Reset button
-st.button("🔄 New Game", on_click=reset_game, help="Start a fresh game", key="reset", css_class="btn-reset")
+st.button("🔄 New Game", on_click=reset_game, help="Start a fresh game", key="reset")
